@@ -12,42 +12,52 @@ import product5 from "../img/product-5.jpg";
 import product6 from "../img/product-6.jpg";
 import product7 from "../img/product-7.jpg";
 import product8 from "../img/product-8.jpg";
+import { v4 as uuidv4 } from 'uuid';
+
 const data =[
     {
+        productId:uuidv4(),
         productType:"Men's dresses",
         productimg:product1,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
 
     },
     {
+        productId:uuidv4(),
         productType:"Women's dresses",
         productimg:product2,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
 
     },
     {
+        productId:uuidv4(),
         productType:"Baby's dresses",
         productimg:product3,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
 
     },
     {
+        productId:uuidv4(),
         productType:"Accerssoriess",
         productimg:product4,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
@@ -58,6 +68,7 @@ const data =[
         productimg:product5,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
@@ -68,6 +79,7 @@ const data =[
         productimg:product6,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
@@ -78,6 +90,7 @@ const data =[
         productimg:product7,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
@@ -88,6 +101,7 @@ const data =[
         productimg:product8,
         productName:'Colorful Stylish Shirt',
         productPrice:"$123.00",
+        quantity:"6",
         pruductUrl:function name(params) {
             return(this.productType+this.productName)
         }
@@ -120,4 +134,10 @@ const categorys =[
         categoryImg:cat6
     },
 ]
-export {data,categorys};
+
+const admins = [{
+    username:"aaa",
+    email:"a@a.com",
+    password:"123asdASD"
+}]
+export {data,categorys,admins};

@@ -1,8 +1,8 @@
-import React from 'react'
+import { useState } from 'react';
 import { Menu } from './menu'
 
-
-export const Sidebar = () => {
+export const Sidebar = ({formLoginShow,setFormLoginShow}) => {
+    
   return (
     <>
                 <div class="container-fluid mb-5">
@@ -34,10 +34,11 @@ export const Sidebar = () => {
                     </div>
                 </nav>
             </div>
-            <Menu></Menu>
+            <Menu setFormLoginShow={setFormLoginShow} formLoginShow={formLoginShow}></Menu>
             </div>
             </div>
            
-    </>
+
+</>
   )
 }

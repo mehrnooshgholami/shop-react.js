@@ -1,54 +1,9 @@
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import * as Yup from "yup"
 
 export const Add = ({datas, setdata,setAdding}) => {
-
-  const [productType,setproductType]=useState('')
-  const [productimg,setproductimg]=useState('')
-  const [productPrice,setproductPrice]=useState('')
-  const [productName,setproductName]=useState('')
-  const [quantity,setquantity]=useState('')
-
-const add=()=>{
-  const newData ={
-      id:uuidv4(),
-      productType:productType,
-      productimg:productimg,
-      productName:productName,
-      productPrice:productPrice,
-      quantity:quantity,
-  }
-  // addData(newData)
-  console.log([...datas,newData]);
-  clearInputs()
-}
-
-// const addData=(newData)=>{
-
-//     console.log([...datas,newData]);
-//     }
-
-const clearInputs=()=>{
-  setproductType("")
-  setproductimg("")
-  setproductPrice("")
-  setquantity("")
-  setproductName("")
-  }
-
-//   const id = uuidv4(); 
-//   const newData =
-//     {
-//         productType,
-//         productimg,
-//         productName,
-//         productPrice,
-//         quantity,
- 
-//     }
-//     console.log([...datas,newData]);
-
 
   return (
     <>
@@ -56,38 +11,67 @@ const clearInputs=()=>{
         <Formik
         initialValues={
           {
+            productId:uuidv4(),
             productType:"",
             productName:"",
             productPrice:"",
             quantity:"",
           }
         }
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
+        validationSchema={Yup.object({
+          productType: Yup.string().required("Required"),
+          productName: Yup.string().required("Required"),
+          productPrice: Yup.string().required("Required"),
+          quantity:Yup.string().required("required")
+        })}
+        onSubmit={(values)=>{
+          setdata([...datas , values])
+          values.productId=uuidv4()
+          setAdding(false)
+      }}
         >
         <Form>
-          <div>
-          <div>
-          <Field name="productType" placeholder="productType" type="text"/>
-          </div>
-          <div>
-          <Field name="productName" placeholder="productName" type="text"/>
-          </div>
-          <div>
-          <Field name="productPrice" placeholder="productPrice" type="text"/>
-          </div>
-          <div>
-          <Field type="number" id="quantity" placeholder="quantity" name="quantity" min="1" class=" bg-secondary mx-auto" style={{width: "70px"}}/><br/>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn btn-primary" onClick={p=>setAdding(false)}>out</button>
-          </div>
+        <div>
+            <div class="text-center mt-4">
+                <h3 class="section-title px-5"><span class="px-2">Add new product</span></h3>
+            </div>
+            <div className="form-group">
+              <label htmlFor="productType">Product Type</label>
+              <Field type="text" id="productType" name="productType" className="form-control" />
+                <p className="col-sm-2 col-form-label text-danger">
+                    <ErrorMessage name="productType"/>
+                </p>
+            </div>
+              <div className="form-group">
+              <label htmlFor="productName">Product Name</label>
+              <Field type="text" id="productName" name="productName" className="form-control" />
+                <p className="col-sm-2 col-form-label text-danger">
+                  <ErrorMessage name="productName"/>
+                </p>
+            </div>
+            <div className="form-group">
+              <label htmlFor="productPrice">Price</label>
+              <Field type="number" id="productPrice" name="productPrice" className="form-control" />
+                <p className="col-sm-2 col-form-label text-danger">
+                  <ErrorMessage name="productPrice"/>
+                </p>
+            </div>
+            <div className="form-group">
+              <label htmlFor="quantity">Quantity</label>
+              <Field type="number" id="quantity" name="quantity" className="form-control" />
+                <p className="col-sm-2 col-form-label text-danger">
+                  <ErrorMessage name="quantity"/>
+                </p>
+            </div>
+            </div>
+          <button type="submit" className="btn btn-primary" >
+            Add Product
+          </button>
         </Form>
         </Formik>
+          <button type='button' class="btn btn-primary" onClick={p=>setAdding(false)}>out</button>
+
+
 
         
     </>

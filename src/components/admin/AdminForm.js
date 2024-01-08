@@ -5,13 +5,15 @@ import { AdminPanel } from './AdminPanel'
 import { admins } from '../../data/data'
 import Swal from 'sweetalert2'
 
-const AdminForm = ({paneladminshow , setpaneladminshow ,datas,setdata}) => {
+const AdminForm = ({paneladminshow , setpaneladminshow ,datas,setdata,setformadminshow}) => {
   return (
     <>
       { 
         paneladminshow?
           <AdminPanel datas={datas} setdata={setdata} setpaneladminshow={setpaneladminshow}/>
             :
+            <>
+            <button type='button'  class="btn btn-primary" onClick={a=>setformadminshow(false)}>Home</button>
               <Formik 
                   initialValues={{username:"",email:"",password:""}}
                   validationSchema={Yup.object({
@@ -109,7 +111,7 @@ const AdminForm = ({paneladminshow , setpaneladminshow ,datas,setdata}) => {
                       </div>
                   </div>
               </Formik>
-   
+              </>
       }
     </>
   )

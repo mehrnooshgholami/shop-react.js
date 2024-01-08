@@ -6,15 +6,16 @@ import './css/style.css'
 import '../src/lib/owlcarousel/assets/owl.carousel.min.css';
 import { Landing } from './Landing';
 import { useState } from 'react';
-import { admins, data } from './data/data';
+import { admins, data, users } from './data/data';
 
 function App() {
-  const [datas,setdata] = useState(data)
+  const [datas,setdata] = useState([...data])
   const [admin,setadmin] = useState(admins)
+  const [user,setUser] = useState(users)
   return (
 
       <>
-<Landing datas={datas} setdata={setdata} admin={admin}></Landing>
+        <Landing user={user} setUser={setUser} datas={datas} setdata={setdata} admin={admin}></Landing>
       </>
 
   );

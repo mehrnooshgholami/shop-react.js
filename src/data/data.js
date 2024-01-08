@@ -4,109 +4,15 @@ import cat3 from "../img/cat-3.jpg";
 import cat4 from "../img/cat-4.jpg";
 import cat5 from "../img/cat-5.jpg";
 import cat6 from "../img/cat-6.jpg";
-import product1 from "../img/product-1.jpg";
-import product2 from "../img/product-2.jpg";
-import product3 from "../img/product-3.jpg";
-import product4 from "../img/product-4.jpg";
-import product5 from "../img/product-5.jpg";
-import product6 from "../img/product-6.jpg";
-import product7 from "../img/product-7.jpg";
-import product8 from "../img/product-8.jpg";
-import { v4 as uuidv4 } from 'uuid';
+
+
 
 const data =[
     {
-        productId:uuidv4(),
-        productType:"Men's dresses",
-        productimg:product1,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
+        
 
-    },
-    {
-        productId:uuidv4(),
-        productType:"Women's dresses",
-        productimg:product2,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
-
-    },
-    {
-        productId:uuidv4(),
-        productType:"Baby's dresses",
-        productimg:product3,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
-
-    },
-    {
-        productId:uuidv4(),
-        productType:"Accerssoriess",
-        productimg:product4,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
-
-    },
-    {
-        productType:"Bags",
-        productimg:product5,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
-
-    },
-    {
-        productType:"Shoes",
-        productimg:product6,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
-
-    },
-    {
-        productType:'bag',
-        productimg:product7,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
-
-    },
-    {
-        productType:'bag',
-        productimg:product8,
-        productName:'Colorful Stylish Shirt',
-        productPrice:"$123.00",
-        quantity:"6",
-        pruductUrl:function name(params) {
-            return(this.productType+this.productName)
-        }
-
-    },
+    }
+    
 ]
 const categorys =[
     {
@@ -140,4 +46,11 @@ const admins = [{
     email:"a@a.com",
     password:"123asdASD"
 }]
-export {data,categorys,admins};
+ const users =[{
+    firstName:"aaa",
+    email:"a@a.com",
+    password:"123asdASD",
+    mobileNo:"123",
+    lastName:"aa"
+ }]
+export {data,categorys,admins,users};

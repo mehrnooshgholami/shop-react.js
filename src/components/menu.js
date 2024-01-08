@@ -1,7 +1,7 @@
 import React from 'react'
 import { Slider } from './slider'
 
-export const Menu = () => {
+export const Menu = ({setFormLoginShow}) => {
   return (
     <>
 
@@ -28,8 +28,7 @@ export const Menu = () => {
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            <a href="#" class="nav-item nav-link "  onClick={a=>{setFormLoginShow(true)}} >Login / Register</a>
                         </div>
                     </div>
                 </nav>

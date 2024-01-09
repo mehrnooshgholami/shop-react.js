@@ -2,20 +2,23 @@ import React, {useState} from 'react'
 import {Formik, Field, Form, ErrorMessage} from 'formik'
 import * as Yup from "yup"
 import {AdminPanel} from './AdminPanel'
-import {admins} from '../../data/data'
 import Swal from 'sweetalert2'
-import {BrowserRouter as Router, Route, Link, NavLink, Switch, Redirect, Prompt,useHistory} from 'react-router-dom';
+import { redirect,useNavigate, Navigate} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AdminForm = ({paneladminshow, setpaneladminshow, datas, setdata, setformadminshow, aut, setAut}) => {
     const [admin,setadmin] = useState(JSON.parse(localStorage.getItem('admin')))
-    const history=useHistory()
+    const admins = useSelector(store=>store.AdminState)
+    const navigate=useNavigate()
     return (
         <>
-                        {admin?  
-                        <Redirect to="/admin/adminpanel"/>
-                        :
-                            <>
-                        <button type='button' class="btn btn-primary" onClick={a => history.push("/")}>Home
+                        {admin ?
+                         <>
+                        <Navigate to="/admin/adminpanel" replace={true} />
+                        </>
+                           :
+                           <>
+                        <button type='button' class="btn btn-primary open" onClick={a => navigate("/")}>Home
                         </button>
                         <Formik
                             initialValues={{username: "", email: "", password: ""}}
@@ -45,7 +48,8 @@ const AdminForm = ({paneladminshow, setpaneladminshow, datas, setdata, setformad
 
                                                
                                                 localStorage.setItem('admin',JSON.stringify(values))
-                                                history.push('/admin/adminpanel')
+                                              
+                                                navigate("/admin/adminpanel", { replace: true});
 
                                                 Swal.fire({
                                                     icon: 'success',

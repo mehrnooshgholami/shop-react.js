@@ -4,7 +4,6 @@ export const REMOVE_PRODUCTS = "REMOVE_PRODUCTS";
 export const EDIT_PRODUCTS = "EDIT_PRODUCTS";
 // ===========Admins===========
 export const ADD_ADMINS = "ADD_ADMINS";
-export const REMOVE_ADMINS = "REMOVE_ADMINS";
 // ===========Users===========
 export const ADD_USERS = "ADD_USERS";
 export const REMOVE_USERS = "REMOVE_USERS";
@@ -18,5 +17,8 @@ export const LOGOUT = "LOGOUT";
 
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
-
+// ===========cart===========
+export const ADD_CART= "ADD_CART";
+export const REMOVE_CART = "REMOVE_CART";
+export const EDIT_CART= "EDIT_CART";
 

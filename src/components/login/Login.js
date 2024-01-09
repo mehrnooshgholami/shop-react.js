@@ -1,23 +1,31 @@
 import React, {useState} from 'react'
-import {Formik, Field, Form, ErrorMessage} from 'formik'
+import {Formik, Field, Form, ErrorMessage, replace} from 'formik'
 import * as Yup from "yup"
 import Register from './Register'
 import {UserPanel} from './PanelUser'
-import { BrowserRouter as  Link, NavLink,Redirect,useHistory} from 'react-router-dom';
-import { users } from '../../data/data'
+import {redirect,useNavigate, Navigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const Login = ({setFormLoginShow,paneluser, setPaneluser,formRegisterShow, setFormRegisterShow,loggedin, setloggedin,setAutUser}) => {
 
     const [user,setUser] = useState(localStorage.getItem('user'))
-    const history=useHistory()
+    const users =useSelector(store=>store.userState)
+    const navigate=useNavigate()
 
     return (
         <>
             {
+
+
                 user?
-                <Redirect to="/login/userpanel"/>
-                :
+                <>
+
+                        <Navigate to="/login/userpanel" replace={true} />
+               
+                
+                        </>
+                        :
                         <>
                             <Formik
                                 initialValues={{mobileNo: '', password: ''}}
@@ -34,7 +42,7 @@ const Login = ({setFormLoginShow,paneluser, setPaneluser,formRegisterShow, setFo
                                         setTimeout(() => {
                                         //     setloggedin(users.filter(a => a.mobileNo === values.mobileNo));
                                             localStorage.setItem('user',JSON.stringify(users.find((i) => i.mobileNo === values.mobileNo && i.password === values.password)))
-                                            history.push('/login/userpanel')
+                                            navigate("/login/userpanel", { replace: true})
                                             setSubmitting(false);
                                         }, 400);
                                     }
@@ -69,17 +77,16 @@ const Login = ({setFormLoginShow,paneluser, setPaneluser,formRegisterShow, setFo
 
                                             <div class="d-flex align-items-center justify-content-center pb-4">
                                                 <p class="mb-0 me-2">Don't have an account?</p>
-                                                <button type="button" class="btn btn-outline-primary" onClick={a => history.push("/register")} >Create new</button>
+                                                <button type="button" class="btn btn-outline-primary" onClick={a => navigate("/register")} >Create new</button>
                                             </div>
 
                                         </Form>
                                     </div>
                                 </div>
                             </Formik>
-                        </>
-            }
-        </>
-    )
-}
-
+                            </>}
+            
+            </>
+        )
+    }
 export default Login

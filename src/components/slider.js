@@ -1,11 +1,40 @@
-import React from 'react'
-import carousel1 from "../img/carousel-1.jpg";
-import carouse2 from "../img/carousel-2.jpg";
+import React, { useCallback, useState } from 'react';
+import Gallery from 'devextreme-react/gallery';
+import { gallery } from '../data/data';
+
 
 export const Slider = () => {
+    const [loop, setLoop] = useState(true);
+    const [slideShow, setSlideShow] = useState(true);
+    const [showNavButtons, setShowNavButtons] = useState(true);
+    const [showIndicator, setShowIndicator] = useState(true);
+    // const onLoopChanged = useCallback(
+    //     (data) => {
+    //       setLoop(data.value);
+    //     },
+    //     [setLoop],
+    //   );
+    //   const onSlideShowChanged = useCallback(
+    //     (data) => {
+    //       setSlideShow(data.value);
+    //     },
+    //     [setSlideShow],
+    //   );
+    //   const onShowNavButtonsChanged = useCallback(
+    //     (data) => {
+    //       setShowNavButtons(data.value);
+    //     },
+    //     [setShowNavButtons],
+    //   );
+    //   const onShowIndicatorChanged = useCallback(
+    //     (data) => {
+    //       setShowIndicator(data.value);
+    //     },
+    //     [setShowIndicator],
+    //   );
   return (
     <>
-
+{/* 
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style={{height: "410px"}}>
@@ -39,8 +68,24 @@ export const Slider = () => {
                             <span class="carousel-control-next-icon mb-n2"></span>
                         </div>
                     </a>
-                </div>
+                </div> */}
+    <div>
+      <div className="widget-container">
+        <Gallery
+          id="gallery"
+          dataSource={gallery}
+          height={410}
+          slideshowDelay={slideShow ? 2000 : 0}
+          loop={loop}
+          showNavButtons={showNavButtons}
+          showIndicator={showIndicator}
+        />
+      </div>
+    </div>
 
                 </>
   )
 }
+
+
+

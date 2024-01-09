@@ -34,9 +34,9 @@ export const Landing = ({ datas , admin,setdata,user,setUser}) => {
         <Benefit/>
         <Items/>
         <Sales/>
-        <Trandys datas={datas}/>
+        <Trandys />
         <SubscribeStart/>
-        <JustArrivedProducts datas={datas}/>
+        <JustArrivedProducts />
         <Ads/>
         <Footer/>
 

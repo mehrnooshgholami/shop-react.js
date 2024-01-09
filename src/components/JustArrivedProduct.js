@@ -1,7 +1,9 @@
 import React from 'react'
 import { data } from '../data/data'
+import { useSelector } from 'react-redux'
 
-export const JustArrivedProduct = ({datas}) => {
+export const JustArrivedProduct = () => {
+  const datas = useSelector(store => store.ProuductState)
   return (
     <>
     {

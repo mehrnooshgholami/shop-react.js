@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import ProductTable from './ProductTable.js';
-import {Redirect} from 'react-router-dom'
+import {redirect} from 'react-router-dom'
 
 
 export const AdminPanel = ({
@@ -21,7 +21,9 @@ export const AdminPanel = ({
                 
                 <ProductTable setadmin={setadmin} setproductitem={setproductitem} setEditing={setEditing} setAdding={setAdding} setpaneladminshow={setpaneladminshow} datas={datas} setdata={setdata}/>
                 :
-                <Redirect to="/admin"/>
+                <>
+                    {redirect("/admin")}
+                </>
             }
         </>
     )

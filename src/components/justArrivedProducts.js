@@ -1,7 +1,7 @@
 import React from 'react'
 import { JustArrivedProduct } from './JustArrivedProduct'
 
-export const JustArrivedProducts = ({datas}) => {
+export const JustArrivedProducts = () => {
   return (
     <div class="container-fluid pt-5">
     <div class="text-center mb-4">
@@ -9,7 +9,7 @@ export const JustArrivedProducts = ({datas}) => {
     </div>
     <div class="row px-xl-5 pb-3">
         
-            <JustArrivedProduct datas={datas}></JustArrivedProduct>
+            <JustArrivedProduct ></JustArrivedProduct>
         
     </div>
 </div>

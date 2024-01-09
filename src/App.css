@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.dx-gallery-indicator-item{
+  background-color: #D19C97 !important
+}

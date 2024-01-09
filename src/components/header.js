@@ -8,17 +8,18 @@ export const Header = ({appRoutes}) => {
                 <div class="row bg-secondary py-2 px-xl-5">
                     <div class="col-lg-6 d-none d-lg-block">
                         <div class="d-inline-flex align-items-center">
-                            <a class="text-dark" href="">FAQs</a>
-                            <span class="text-muted px-2">|</span>
                             <a class="text-dark" href="">Help</a>
                             <span class="text-muted px-2">|</span>
-                            <a class="text-dark" href="">Support</a>
+                            <NavLink class="text-dark" to="/detail">Detail</NavLink>
+                            <span class="text-muted px-2">|</span>
+                            <NavLink class="text-dark" to="/">Home</NavLink>
                             <span class="text-muted px-2">|</span>
                             {/* <a class="text-dark" onClick={()=>setformadminshow(true)} href="#">admin</a> */}
                             <NavLink class="text-dark" to="/admin">admin</NavLink>
-                            <span class="text-muted px-2">|</span>
+                            
                             {/* <a class="text-dark" href="#" onClick={()=>setCart(true)}>Cart</a> */}
-                            <NavLink class="text-dark" to="/cart">Cart</NavLink>
+                            
+                        
                         </div>
                     </div>
                     <div class="col-lg-6 text-center text-lg-right">

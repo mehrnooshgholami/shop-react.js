@@ -1,5 +1,6 @@
 import React from 'react'
 import { Slider } from './slider'
+import {BrowserRouter as Router, Route, Link, NavLink, Switch, Redirect, Prompt} from 'react-router-dom';
 
 export const Menu = ({setFormLoginShow}) => {
   return (
@@ -28,7 +29,7 @@ export const Menu = ({setFormLoginShow}) => {
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="#" class="nav-item nav-link "  onClick={a=>{setFormLoginShow(true)}} >Login / Register</a>
+                           <NavLink to="/login"><a class="nav-item nav-link " >Login / Register</a></NavLink> 
                         </div>
                     </div>
                 </nav>

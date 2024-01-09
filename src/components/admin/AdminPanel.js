@@ -1,29 +1,29 @@
-import React, { useState } from 'react'
-import { Add } from './Add.js';
+import React, {useState} from 'react'
 import ProductTable from './ProductTable.js';
-import Edit from './Edit.js';
+import {Redirect} from 'react-router-dom'
 
 
-export const AdminPanel = ({datas, setdata , setpaneladminshow }) => {
-const [adding,setAdding]=useState(false)
-const [productitem , setproductitem]=useState([])
-const [editing,setEditing]=useState(false)
-    
+export const AdminPanel = ({
+                               datas,
+                               setdata,
+                               setpaneladminshow,
+                               setEditing,
+                               editing,
+                               adding,
+                               setproductitem,
+                               setAdding
+                           }) => {
+                            const [admin,setadmin] = useState(JSON.parse(localStorage.getItem('admin')))
     return (
         <>
-            {
-                adding?
-                    editing?
-                        null
-                    :
-                        <Add setdata={setdata} datas={datas} setAdding={setAdding}/>
+            
+            {admin?
+                
+                <ProductTable setadmin={setadmin} setproductitem={setproductitem} setEditing={setEditing} setAdding={setAdding} setpaneladminshow={setpaneladminshow} datas={datas} setdata={setdata}/>
                 :
-                editing?
-                <Edit productitem={productitem} setdata={setdata} datas={datas} setEditing={setEditing}/>
-                :
-                <ProductTable setproductitem={setproductitem} setEditing={setEditing} setAdding={setAdding} setpaneladminshow={setpaneladminshow} datas={datas} setdata={setdata} />
+                <Redirect to="/admin"/>
             }
         </>
     )
-    
+
 }

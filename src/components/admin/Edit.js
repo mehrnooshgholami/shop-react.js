@@ -1,8 +1,13 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import * as Yup from "yup"
+import { editProducts } from '../../state-management/action/productsAction';
+import {BrowserRouter as Router, Route,useHistory} from 'react-router-dom';
 
 const Edit = ({productitem , setdata , datas , setEditing}) => {
+  const dispatch = useDispatch()
+  const history=useHistory()
     return (
         <>
 
@@ -27,15 +32,27 @@ const Edit = ({productitem , setdata , datas , setEditing}) => {
               quantity:Yup.string().required("required")
             })}
             onSubmit={(values)=>{
-                setdata([...datas.filter((i)=>i.productId !== Item.productId),values])
-              setEditing(false)
+                //setdata([...datas.filter((i)=>i.productId !== Item.productId),values])
+                dispatch(editProducts(Item,values))
+                history.push('/admin/adminpanel')
           }}
             >
             <Form>
             <div>
-                <div class="text-center mt-4">
-                    <h3 class="section-title px-5"><span class="px-2">Edit product</span></h3>
+                <div class="container-fluid bg-secondary mb-5">
+            <div class="d-flex flex-column align-items-center justify-content-center" style={{minHeight: "300px"}}>
+                <h1 class="font-weight-semi-bold text-uppercase mb-3">Edit product</h1>
+                <div class="d-inline-flex">
+                    <p class="m-0"><a href="">Home</a></p>
+                    <p class="m-0 px-2">-</p>
+                    <p class="m-0">Edit product</p>
                 </div>
+            </div>
+        </div>
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5">
+                <div class="col-lg-8">
+                    <div class="mb-4">
                 <div className="form-group">
                   <label htmlFor="productType">Product Type</label>
                   <Field type="text" id="productType" name="productType" className="form-control" placeholder={Item.productType}/>
@@ -68,15 +85,15 @@ const Edit = ({productitem , setdata , datas , setEditing}) => {
               <button type="submit" className="btn btn-primary" >
                 edit
               </button>
+              <button type='button' class="btn btn-primary float-end" onClick={p=>history.push('/admin/adminpanel')}>don't edit</button>
+            </div>
+              </div>
+                </div>
+                  </div>
             </Form>
             </Formik>
-                            ))
-                        }
-              <button type='button' class="btn btn-primary" onClick={p=>setEditing(false)}>don't edit</button>
-    
-    
-    
-            
+                ))
+                  }
         </>
       )
 }

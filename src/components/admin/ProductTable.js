@@ -1,116 +1,220 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
+import { removeProducts } from '../../state-management/action/productsAction';
+import { BrowserRouter as  Link, NavLink,useHistory} from 'react-router-dom';
+import ProgressBar from 'devextreme-react/progress-bar';
+import FileUploader from 'devextreme-react/file-uploader';
+import DataGrid, {
+    Column,
+    Editing,
+    Paging,
+    Selection,
+    Lookup,
+    Toolbar,
+    Item,
+  } from 'devextreme-react/data-grid';
+  
+  import { Button } from 'devextreme-react/button';
+  
+  import ArrayStore from 'devextreme/data/array_store';
+  import DataSource from 'devextreme/data/data_source';
+  
+//   import { employees, states } from './data.js';
+  
 
-const ProductTable = ({setproductitem , setEditing , setAdding , setpaneladminshow , datas , setdata}) => {
-    const remove = (item) =>{
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-              confirmButton: "btn btn-success",
-              cancelButton: "btn btn-danger"
-            },
-            buttonsStyling: false
-          });
-          swalWithBootstrapButtons.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: true
-          }).then((result) => {
-            if (result.isConfirmed) {
-            setdata(datas.filter((i)=>i.productId !== item.productId))
-              swalWithBootstrapButtons.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            } else if (
-              /* Read more about handling dismissals below */
-              result.dismiss === Swal.DismissReason.cancel
-            ) {
-              swalWithBootstrapButtons.fire({
-                title: "Cancelled",
-                text: "Your imaginary file is safe :)",
-                icon: "error"
-              });
-            }
-          });
-      }
-  return (
-    <>
+
+//   class ProductTable extends React.Component {
+//     constructor(props) {
+//       super(props);
+//       this.state = {
+//         selectedItemKeys: [],
+//       };
+//       this.selectionChanged = this.selectionChanged.bind(this);
+//       this.deleteRecords = this.deleteRecords.bind(this);
+//     }
+  
+//     render() {
+//       return (
+//         <div id="data-grid-demo">
+//           <DataGrid id="gridContainer"
+//             dataSource={dataSource}
+//             showBorders={true}
+//             selectedRowKeys={this.state.selectedItemKeys}
+//             onSelectionChanged={this.selectionChanged}
+//           >
+//             <Selection mode="multiple" />
+//             <Paging enabled={false} />
+//             <Editing
+//               mode="cell"
+//               allowUpdating={true}
+//               allowAdding={true}
+//               allowDeleting={true} />
+  
+//             <Column dataField="Prefix" caption="Title" width={55} />
+//             <Column dataField="FirstName" />
+//             <Column dataField="LastName" />
+//             <Column dataField="Position" width={170} />
+//             <Column dataField="StateID" caption="State" width={125}>
+//               <Lookup dataSource={states} valueExpr="ID" displayExpr="Name" />
+//             </Column>
+//             <Column dataField="BirthDate" dataType="date" />
+//             <Toolbar>
+//               <Item name="addRowButton" showText="always" />
+//               <Item location="after">
+//                 <Button
+//                   onClick={this.deleteRecords}
+//                   icon="trash"
+//                   disabled={!this.state.selectedItemKeys.length}
+//                   text="Delete Selected Records" />
+//               </Item>
+//             </Toolbar>
+//           </DataGrid>
+//         </div>
+//       );
+//     }
+  
+//     deleteRecords() {
+//       this.state.selectedItemKeys.forEach((key) => {
+//         dataSource.store().remove(key);
+//       });
+//       this.setState({
+//         selectedItemKeys: [],
+//       });
+//       dataSource.reload();
+//     }
+  
+//     selectionChanged(data) {
+//       this.setState({
+//         selectedItemKeys: data.selectedRowKeys,
+//       });
+//     }
+//   }
+  
+//   export default ProductTable;
+  
+
+  
+const ProductTable = ({setadmin,setproductitem, setEditing, setAdding, setpaneladminshow, datas, setdata}) => {
+    const [isDropZoneActive, setIsDropZoneActive] = useState(false); const [imageSource, setImageSource] = useState(''); const [textVisible, setTextVisible] = useState(true); const [progressVisible, setProgressVisible] = useState(false); const [progressValue, setProgressValue] = useState(0)
+
+    const allowedFileExtensions = ['.jpg', '.jpeg', '.gif', '.png'];
+    
+    const onDropZoneEnter = (e) => { if (e.dropZoneElement.id === 'dropzone-external') { setIsDropZoneActive(true); } };
+    
+    const onDropZoneLeave = (e) => { if (e.dropZoneElement.id === 'dropzone-external') { setIsDropZoneActive(false); } };
+    
+    const onUploaded = (e) => { const { file } = e; const fileReader = new FileReader(); fileReader.onload = () => { setIsDropZoneActive(false); setImageSource(fileReader.result); }; fileReader.readAsDataURL(file); setTextVisible(false); setProgressVisible(false); setProgressValue(0); };
+    
+    const onProgress = (e) => { setProgressValue((e.bytesLoaded / e.bytesTotal) * 100); };
+    
+    const onUploadStarted = () => { setImageSource(''); setProgressVisible(true); };
+    
+    const Prouducts = useSelector(store => store.ProuductState);
+    const dispatch = useDispatch();
+    const history = useHistory()
+    const dataSource = new DataSource({
+        store: new ArrayStore({
+          data: Prouducts,
+          key: 'productId',
+        }),
+      });
+      
+    return (
+        <>
 
     <div class="d-flex justify-content-center container-fluid pt-5">
-    <div class="row">
-        <div class=" table-responsive mb-5">
+        <div class="row">
+            <div class="input-group-append" style={{float: "right"}}>
+                <button class="btn btn-primary" onClick={t =>setadmin(localStorage.clear())}>
+                    log out
+                </button>
+            </div>
+            <div class=" table-responsive mb-5">
 
-        <div class="input-group-append" style={{float:"right"}}>
-            <button class="btn btn-primary" onClick={t=>setpaneladminshow(false)}>
-                log out
-            </button>
-        </div>
+                <div id="data-grid-demo">
+                    <DataGrid id="gridContainer"
+                        dataSource={dataSource}
+                        showBorders={true}
+                        // selectedRowKeys={this.state.selectedItemKeys}
+                        // onSelectionChanged={this.selectionChanged}
+                    >
+                        <Selection mode="multiple" />
+                        <Paging enabled={false} />
+                        <Editing
+                        mode="cell"
+                        allowUpdating={true}
+                        allowAdding={true}
+                        allowDeleting={true} />
 
-        <div class="input-group-append">
-            <button class="btn btn-primary" onClick={w=>setAdding(true)}>
-                <i className='fa fa-plus'></i>
-            </button>
-        </div>
+<div className="widget-container flex-box">
+    <span>Profile Picture</span>
+    <div id="dropzone-external" className={`flex-box ${isDropZoneActive ? 'dx-theme-accent-as-border-color dropzone-active' : 'dx-theme-border-color'}`}>
+      {imageSource && <img id="dropzone-image" src={imageSource} alt="" />}
+      {textVisible
+      && <div id="dropzone-text" className="flex-box">
+        <span>Drag & Drop the desired file</span>
+        <span>…or click to browse for a file instead.</span>
+      </div>}
+      <ProgressBar
+        id="upload-progress"
+        min={0}
+        max={100}
+        width="30%"
+        showStatus={false}
+        visible={progressVisible}
+        value={progressValue}
+      ></ProgressBar>
+    </div>
+    <FileUploader
+      id="file-uploader"
+      dialogTrigger="#dropzone-external"
+      dropZone="#dropzone-external"
+      multiple={false}
+      allowedFileExtensions={allowedFileExtensions}
+      uploadMode="instantly"
+      uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
+      visible={false}
+      onDropZoneEnter={onDropZoneEnter}
+      onDropZoneLeave={onDropZoneLeave}
+      onUploaded={onUploaded}
+      onProgress={onProgress}
+      onUploadStarted={onUploadStarted}
+    ></FileUploader>
+  </div>
+            
+                        {/* <Column dataField="Picture"
+                        width={100}
+                        allowSorting={false}
+                        // cellRender={cellRender}
+                        /> */}
+                             <Column dataField="file"  >
+                             <input type="file"/>
+                             </Column>
 
-
-            <table class="table table-bordered text-center mb-0">
-                <thead class="bg-secondary text-dark">
-                    <tr>
-                        <th>Products</th>
-                        <th>name</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Edit</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody class="align-middle">
-                    {
-                        datas.map((item)=>(
-                            <tr>
-                                <td class="align-middle">
-                                    <img src={item.productimg} style={{width:"50px",height:"50px"}} alt="" /> 
-                                </td>
-
-                                <td class="align-middle" >{item.productName}</td>
-
-                                <td class="align-middle" >{item.productType}</td>
-
-                                <td class="align-middle" >{item.productPrice}</td>
-                                
-                                <td class="align-middle" >
-                                    {item.quantity}
-                                </td>
-
-                                <td class="align-middle">
-                                    <button onClick={a=>{setproductitem([item]);setEditing(true)}} class="btn btn-sm btn-primary">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                </td>
-                                
-                                <td class="align-middle">
-                                    <button class="btn btn-sm btn-primary" onClick={r=>remove(item)}>
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                        <Column dataField="productType"  />
+                        <Column dataField="productName" />
+                        <Column dataField="productPrice" />
+                        <Column dataField="quantity" />
+                        <Toolbar>
+                        <Item name="addRowButton" showText="always" />
+                        <Item location="after">
+                            <Button
+                            //   onClick={this.deleteRecords}
+                            icon='trash'
+                            //   disabled={!this.state.selectedItemKeys.length}
+                            text="Delete Selected Records" />
+                        </Item>
+                        </Toolbar>
+                    </DataGrid>
+                    <button onClick={a=>console.log(Prouducts)}>log</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-        
-
-</>
-  )
+        </>
+    )
 }
+
 
 export default ProductTable

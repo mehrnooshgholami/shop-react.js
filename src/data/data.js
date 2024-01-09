@@ -9,8 +9,12 @@ import cat6 from "../img/cat-6.jpg";
 
 const data =[
     {
-        
-
+        file:null,
+        productId:1,
+        productType:"jhv",
+        productName:"kjb",
+        productPrice:"ijg",
+        quantity:"oiugb",
     }
     
 ]

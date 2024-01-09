@@ -11,6 +11,10 @@ import { Ads } from './components/Ads';
 import { Footer } from './components/Footer';
 import AdminForm from './components/admin/AdminForm';
 import Login from './components/login/Login';
+import { Cart } from './components/Cart';
+import Searchbar from './components/Searchbar';
+
+
 
 
 export const Landing = ({ datas , admin,setdata,user,setUser}) => {
@@ -18,34 +22,25 @@ export const Landing = ({ datas , admin,setdata,user,setUser}) => {
   const [formadminshow,setformadminshow]=useState(false)
   const [paneladminshow,setpaneladminshow]=useState(false)
   const [formLoginShow,setFormLoginShow ] = useState(false)
+  const [cart,setCart]=useState(false)
 
 
   return (
-    <>
-    {
-      formadminshow? 
-      formLoginShow?
-      null
-      :
-      <AdminForm setformadminshow={setformadminshow} formadminshow={formadminshow} admin={admin} datas={datas} setdata={setdata} paneladminshow={paneladminshow} setpaneladminshow={setpaneladminshow}/>
-      :
-      formLoginShow?
-      <Login setFormLoginShow={setFormLoginShow} user={user} setUser={setUser}/>
-      :
+  
+
       <>
-      <Header formadminshow={formadminshow} setformadminshow={setformadminshow}></Header>
-      <Sidebar setFormLoginShow={setFormLoginShow} formLoginShow={formLoginShow}></Sidebar>
-      <Benefit></Benefit>
-      <Items></Items>
-      <Sales></Sales>
-      <Trandys datas={datas}></Trandys>
-      <SubscribeStart></SubscribeStart>
-      <JustArrivedProducts datas={datas}></JustArrivedProducts>
-      <Ads></Ads>
-      <Footer></Footer>
+        <Searchbar/>
+        <Sidebar/>
+        <Benefit/>
+        <Items/>
+        <Sales/>
+        <Trandys datas={datas}/>
+        <SubscribeStart/>
+        <JustArrivedProducts datas={datas}/>
+        <Ads/>
+        <Footer/>
 
       </>
-    }
-    </>
+
 )
 }

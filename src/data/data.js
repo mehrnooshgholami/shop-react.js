@@ -88,7 +88,11 @@ const admins = [{
     zipCode: '1234',
     adress: 'glklklllllll',
     password: '123asdASD',
-    cart:[]
+    cart:[
+        // {
+        //     quantity:0,
+        // }
+    ]
  },{
     userId:2,
     firstName: 'as',

@@ -1,4 +1,4 @@
-import { ADD_USERS, EDIT_USERS, REMOVE_USERS,ADD_CART, REMOVE_CART} from "../action/actionTypes";
+import { ADD_USERS, EDIT_USERS, REMOVE_USERS,ADD_CART, REMOVE_CART, INC_CART_QTY, DEC_CART_QTY} from "../action/actionTypes";
 import {users} from '../../data/data'
 
 export const UserReducer = function(state=users, action){
@@ -19,9 +19,38 @@ export const UserReducer = function(state=users, action){
             return state.map((user) =>
                 user.userId === action.payload.userId
                 ? { ...user, cart: [...user.cart.filter(i=>i.productId!==action.payload.productId)] }
-                : user
-                
+                : user 
             );
+
+        case INC_CART_QTY:
+            return state.map((user) =>
+                user.userId === action.payload.userId
+                    ? {
+                        ...user,
+                        cart: user.cart.map((item) =>
+                            item.productId === action.payload.productId
+                                ? { ...item, quantity: item.quantity + 1 }
+                                : item
+                        ),
+                    }
+                    : user
+            );
+            
+        case DEC_CART_QTY:
+            return state.map((user) =>
+                user.userId === action.payload.userId
+                    ? {
+                        ...user,
+                        cart: user.cart.map((item) =>
+                            item.productId === action.payload.productId && item.quantity > 0
+                                ? { ...item, quantity: item.quantity - 1 }
+                                : item
+                        ),
+                    }
+                    : user
+            );
+            
+
         default:
             return state;
     }

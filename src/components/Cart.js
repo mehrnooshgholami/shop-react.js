@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {remove_cart} from "../state-management/action/UsersAction"
+import {decrement, increment, remove_cart} from "../state-management/action/UsersAction"
 export const Cart = () => {
     const users = useSelector(store=>store.userState)
     const [login,setlogin] = useState(JSON.parse(localStorage.getItem('user')))
@@ -52,13 +52,13 @@ export const Cart = () => {
                                     <td class="align-middle">
                                         <div class="input-group quantity mx-auto" style={{width: "100px"}}>
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-minus" >
+                                                <button class="btn btn-sm btn-primary btn-minus" onClick={() => dispatch(decrement(login.userId, item.productId))}>
                                                 <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1"/>
+                                            <p  class="form-control form-control-sm bg-secondary text-center">{item.quantity}</p>
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-plus">
+                                                <button class="btn btn-sm btn-primary btn-plus" onClick={() => dispatch(increment(login.userId, item.productId))}>
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>

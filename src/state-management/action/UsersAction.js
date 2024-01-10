@@ -1,4 +1,4 @@
-import { ADD_USERS, EDIT_USERS, REMOVE_USERS,ADD_CART,REMOVE_CART } from "./actionTypes"
+import { ADD_USERS, EDIT_USERS, REMOVE_USERS,ADD_CART,REMOVE_CART, INC_CART_QTY, DEC_CART_QTY } from "./actionTypes"
 
 export const addUser = (item) => ({
     type:ADD_USERS,
@@ -22,4 +22,12 @@ export const add_cart = (item,userId) => ({
 export const remove_cart = (userId,productId) => ({
     type:REMOVE_CART,
     payload:{userId,productId}
+
+})
+export const inc_cart_qty = () => ({
+    type:INC_CART_QTY 
+})
+
+export const dec_cart_qty = () => ({
+    type:DEC_CART_QTY 
 })

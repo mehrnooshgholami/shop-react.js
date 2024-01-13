@@ -2,8 +2,8 @@ import React , {useState} from 'react'
 import { useSelector , useDispatch } from 'react-redux'
 import { add_cart} from '../state-management/action/UsersAction'
 import { NavLink } from 'react-router-dom'
-export const Trand = () => {
-  const datas = useSelector(store => store.ProuductState)
+export const Trand = ({filteredproducts}) => {
+
   const users = useSelector(store => store.userState)
   const dispatch = useDispatch()
   const [login,setlogin] = useState(JSON.parse(localStorage.getItem('user')))
@@ -13,7 +13,7 @@ export const Trand = () => {
     return (
       <>
         {
-        datas.map((item)=>(
+        filteredproducts.map((item)=>(
               <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                   <div class="card product-item border-0 mb-4">
                       <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
@@ -42,7 +42,7 @@ export const Trand = () => {
   }else{
     return(<>
       {
-      datas.map((item)=>(
+      filteredproducts.map((item)=>(
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">

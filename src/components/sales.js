@@ -12,7 +12,7 @@ export const Sales = () => {
                     <div class="position-relative" style={{zIndex: "1"}}>
                         <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
                         <h1 class="mb-4 font-weight-semi-bold">Spring Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                        {/* <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a> */}
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@ export const Sales = () => {
                     <div class="position-relative" style={{zIndex: "1"}}>
                         <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
                         <h1 class="mb-4 font-weight-semi-bold">Winter Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                        {/* <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a> */}
                     </div>
                 </div>
             </div>

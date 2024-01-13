@@ -8,7 +8,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Cart } from './Cart';
 
 
-export const Sidebar = ({formLoginShow,setFormLoginShow}) => {
+export const Sidebar = () => {
 
   return (
     <>
@@ -35,7 +35,7 @@ export const Sidebar = ({formLoginShow,setFormLoginShow}) => {
 
                   </div>
             
-            <ShopMenu setFormLoginShow={setFormLoginShow} formLoginShow={formLoginShow}/>
+            <ShopMenu/>
           </div>
         </div>
 

@@ -39,38 +39,12 @@ export const Footer = () => {
                         <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                    <form action="">
-                        <div class="form-group">
-                            <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                required="required" />
-                        </div>
-                        <div>
-                            <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                        </div>
-                    </form>
-                </div>
+
             </div>
         </div>
     </div>
-    <div class="row border-top border-light mx-xl-5 py-4">
-        <div class="col-md-6 px-xl-0">
-            <p class="mb-md-0 text-center text-md-left text-dark">
-                &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
-                by
-                <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
-            </p>
-        </div>
-        <div class="col-md-6 px-xl-0 text-center text-md-right">
-            <img class="img-fluid" src={payments} alt=""></img>
-        </div>
-    </div>
 </div>
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
     </>
   )
 }

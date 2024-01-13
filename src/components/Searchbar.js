@@ -1,10 +1,16 @@
-import React , {useState} from "react";
+import React , {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-const Searchbar = () => {
+const Searchbar = ({setfilteredproducts,searchQuery,setsearchQuery,datas}) => {
 const [login,setlogin] = useState(JSON.parse(localStorage.getItem('user')))
 const users = useSelector(store=>store.userState)
+
+useEffect(()=>{
+    const filtered = datas.filter((item)=>item.productName.toLowerCase().includes(searchQuery.toLowerCase()))
+    setfilteredproducts(filtered)
+},[searchQuery,datas]
+)
 if (login) {
 const user = users.filter(i=>i.userId===login.userId)
 const cart = user[0].cart
@@ -21,7 +27,7 @@ const cart = user[0].cart
                 <div className="col-lg-6 col-6 text-left">
                     <form action="">
                         <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search for products"/>
+                            <input type="text" className="form-control" placeholder="Search for products" onChange={(e)=>{setsearchQuery(e.target.value)}}/>
                             <div className="input-group-append">
                             <span className="input-group-text bg-transparent text-primary">
                                 <i className="fa fa-search"></i>

@@ -21,15 +21,17 @@ const data =[
         productType:"men",
         productName:"kjb",
         productPrice:7,
-        quantity:5,
+        admin_quantity:5,
+        user_quantity:1,
     },
     {
       file:null,
-      productId:1,
+      productId:2,
       productType:"women",
       productName:"cd",
       productPrice:12,
-      quantity:7,
+      admin_quantity:7,
+      user_quantity:1,
   },
 ]
 const Pruduct = {

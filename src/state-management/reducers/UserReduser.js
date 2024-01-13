@@ -28,8 +28,8 @@ export const UserReducer = function(state=users, action){
                     ? {
                         ...user,
                         cart: user.cart.map((item) =>
-                            item.productId === action.payload.productId
-                                ? { ...item, quantity: item.quantity + 1 }
+                            item.productId === action.payload.productId&&item.admin_quantity>0
+                                ? { ...item, user_quantity: item.user_quantity + 1 }
                                 : item
                         ),
                     }
@@ -42,8 +42,8 @@ export const UserReducer = function(state=users, action){
                     ? {
                         ...user,
                         cart: user.cart.map((item) =>
-                            item.productId === action.payload.productId && item.quantity > 0
-                                ? { ...item, quantity: item.quantity - 1 }
+                            item.productId === action.payload.productId && item.user_quantity > 0 && item.admin_quantity>0
+                                ? { ...item, user_quantity: item.user_quantity - 1 }
                                 : item
                         ),
                     }

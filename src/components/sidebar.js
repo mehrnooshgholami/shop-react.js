@@ -12,19 +12,21 @@ export const Sidebar = ({formLoginShow,setFormLoginShow}) => {
 
   return (
     <>
-                <div class="container-fluid mb-5">
-                 <div class="row border-top px-xl-5">
-                <div class="col-lg-3 d-none d-lg-block ">
-                  <div class="btn-group">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </button>
-                    <ul class="dropdown-menu">
+        <div class="container-fluid mb-5">
+          <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block ">
+                  
+                    <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" type="button" style={{height: "65px", marginTop: "-1px", padding:" 0 30px"}} data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                    <i class="fa fa-angle-down text-dark"></i>
+                    </a>
+                    
+                    <ul class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-75 m-0">
                       
                     {Object.entries(Pruduct).map(([cat, { title }]) => (
                     <li key={cat}>
                       <Link to={`/posts/${cat}`} class="dropdown-item">
-                        <h3>{title}</h3>
+                        <h5>{title}</h5>
                       </Link>
                       </li>
                      ))}
@@ -32,10 +34,10 @@ export const Sidebar = ({formLoginShow,setFormLoginShow}) => {
                     </ul>
 
                   </div>
-            </div>
+            
             <ShopMenu setFormLoginShow={setFormLoginShow} formLoginShow={formLoginShow}/>
-            </div>
-            </div>
+          </div>
+        </div>
 
 </>
   )

@@ -10,8 +10,8 @@ export const Header = ({appRoutes}) => {
                         <div class="d-inline-flex align-items-center">
                             <a class="text-dark" href="">Help</a>
                             <span class="text-muted px-2">|</span>
-                            <NavLink class="text-dark" to="/detail">Detail</NavLink>
-                            <span class="text-muted px-2">|</span>
+                            {/* <NavLink class="text-dark" to="/detail">Detail</NavLink> */}
+                            {/* <span class="text-muted px-2">|</span> */}
                             <NavLink class="text-dark" to="/">Home</NavLink>
                             <span class="text-muted px-2">|</span>
                             {/* <a class="text-dark" onClick={()=>setformadminshow(true)} href="#">admin</a> */}

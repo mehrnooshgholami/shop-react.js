@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {decrement, increment, remove_cart} from "../state-management/action/UsersAction"
+import {dec_cart_qty, inc_cart_qty, remove_cart} from "../state-management/action/UsersAction"
+import { dec_products_qty, inc_products_qty } from '../state-management/action/productsAction'
 export const Cart = () => {
     const users = useSelector(store=>store.userState)
+    const products = useSelector(store=>store.ProuductState)
     const [login,setlogin] = useState(JSON.parse(localStorage.getItem('user')))
     const user = users.filter(i=>i.userId===login.userId)
     const cart = user[0].cart
@@ -52,19 +54,19 @@ export const Cart = () => {
                                     <td class="align-middle">
                                         <div class="input-group quantity mx-auto" style={{width: "100px"}}>
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-minus" onClick={() => dispatch(decrement(login.userId, item.productId))}>
+                                                <button class="btn btn-sm btn-primary btn-minus" onClick={() => dispatch(dec_cart_qty(login.userId, item.productId))&&dispatch(inc_products_qty(item.productId))}>
                                                 <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
-                                            <p  class="form-control form-control-sm bg-secondary text-center">{item.quantity}</p>
+                                            <p  class="form-control form-control-sm bg-secondary text-center">{item.user_quantity}</p>
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-plus" onClick={() => dispatch(increment(login.userId, item.productId))}>
+                                                <button class="btn btn-sm btn-primary btn-plus" onClick={() => dispatch(inc_cart_qty(login.userId, item.productId))&&dispatch(dec_products_qty(item.productId))}>
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="align-middle">{item.productPrice*item.quantity}</td>
+                                    <td class="align-middle">{item.productPrice*item.user_quantity}</td>
                                     <td class="align-middle"><button class="btn btn-sm btn-primary" onClick={a=>dispatch(remove_cart(login.userId,item.productId))}><i class="fa fa-times"></i></button></td>
                                 </tr>
                                 ))
@@ -74,7 +76,6 @@ export const Cart = () => {
                 </table>
             </div>
             <div class="col-lg-4">
-                {/******************************************************************************************/}
             </div>
         </div>
     </div>

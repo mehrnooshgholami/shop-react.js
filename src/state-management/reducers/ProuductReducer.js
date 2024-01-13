@@ -9,9 +9,9 @@ export const ProuductReducer = function(state=data, action){
         case EDIT_PRODUCTS:
             return [...state.filter((i)=>i.productId !== action.payload.Item.productId),action.payload.values]
         case INC_PRODUCTS_QTY:
-            return state.map(i=>i.productId===action.payload.productId?i.quantity-1:i)
+            return state.map(i=>i.productId===action.payload.productId?i.admin_quantity-1:i)
         case DEC_PRODUCTS_QTY:
-            return state.map(i=>i.productId===action.payload.productId?i.quantity+1:i)
+            return state.map(i=>i.productId===action.payload.productId?i.admin_quantity+1:i)
         default:
             return state;
     }

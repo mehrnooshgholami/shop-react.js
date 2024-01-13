@@ -24,10 +24,12 @@ export const remove_cart = (userId,productId) => ({
     payload:{userId,productId}
 
 })
-export const inc_cart_qty = () => ({
-    type:INC_CART_QTY 
+export const inc_cart_qty = (userId,productId) => ({
+    type:INC_CART_QTY,
+    payload:{userId,productId}
 })
 
-export const dec_cart_qty = () => ({
-    type:DEC_CART_QTY 
+export const dec_cart_qty = (userId,productId) => ({
+    type:DEC_CART_QTY,
+    payload:{userId,productId}
 })

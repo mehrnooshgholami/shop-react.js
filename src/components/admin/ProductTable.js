@@ -67,7 +67,8 @@ const ProductTable = () => {
                         <Column dataField="productType"  />
                         <Column dataField="productName" />
                         <Column dataField="productPrice" />
-                        <Column dataField="quantity" />
+                        <Column dataField="productOff" />
+                        <Column dataField="admin_quantity" />
                         <Toolbar>
                         <Item name="addRowButton" showText="always" />
                         <Item location="after">
@@ -79,7 +80,6 @@ const ProductTable = () => {
                         </Item>
                         </Toolbar>
                     </DataGrid>
-                    <button onClick={a=>console.log(Prouducts)}>log</button>
                 </div>
             </div>
         </div>

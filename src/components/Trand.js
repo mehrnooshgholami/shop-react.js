@@ -51,7 +51,13 @@ export const Trand = ({filteredproducts}) => {
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">{item.productName}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>{item.productPrice}</h6><h6 class="text-muted ml-2"><del>{item.productPrice}</del></h6>
+                          {
+                            item.productOff===0?
+                            <h6>{item.productPrice}</h6>
+                            :
+                            <><h6>{Math.round(item.productPrice-item.productPrice*item.productOff/100)}</h6><h6 class="text-muted ml-2"><del>{item.productPrice}</del></h6></>
+                          }
+                            
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">

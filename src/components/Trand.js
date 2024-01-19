@@ -22,14 +22,20 @@ export const Trand = ({filteredproducts}) => {
                       <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                           <h6 class="text-truncate mb-3">{item.productName}</h6>
                           <div class="d-flex justify-content-center">
-                              <h6>{item.productPrice}</h6><h6 class="text-muted ml-2"><del>{item.productPrice}</del></h6>
+                          {
+                            item.productOff===0?
+                            <h6>{item.productPrice}</h6>
+                            :
+                            <><h6>{Math.round(item.productPrice-item.productPrice*item.productOff/100)}</h6><h6 class="text-muted ml-2"><del>{item.productPrice}</del></h6></>
+                          }
                           </div>
                       </div>
                       <div class="card-footer d-flex justify-content-between bg-light border">
                           <NavLink to={"/"+item.productType+"/"+item.productName} class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</NavLink>
-                          <a onClick={a=>{
+                          <a onClick={a=>{user[0].cart.find(i=>i.productId===item.productId)?alert("this product was resently added to cart"):
                               dispatch(add_cart(item , userId))
                             }} class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                             
                       </div>
                   </div>
               </div>

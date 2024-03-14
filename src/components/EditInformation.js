@@ -26,14 +26,33 @@ export const EditInformation = () => {
     const user = useSelector(store=>store.userState)
     const a = user.filter(i=>i.mobileNo===local.mobileNo)
     const dispatch = useDispatch()
-    console.log(a);
   return (
     <>
     {
       a.map((item)=>(
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
 
-      <div>
+      <form onSubmit={e=>{e.preventDefault(); 
+      dispatch(
+        editUser(
+          item.userId,
+          {
+            userId:item.userId,
+            firstName: e.target[0].value,
+            lastName: e.target[1].value,
+            email: e.target[2].value,
+            mobileNo: e.target[5].value,
+            city: e.target[3].value,
+            zipCode: e.target[4].value,
+            adress: e.target[8].value,
+            password: e.target[6].value,
+            cart:[]
+          }
+        )
+      );
+      console.log(a);
+    }
+  }>
         <TextField
           label="firstName"
           id="standard-start-adornment"
@@ -124,8 +143,9 @@ export const EditInformation = () => {
             defaultValue={item.adress}
           />
         </FormControl>
-        <button class="btn btn-primary py-2 px-4 " type="submit" onClick={a=>dispatch(editUser(item.userId,))}>Change Saved</button>
-      </div>
+        <button class="btn btn-primary py-2 px-4 " type="submit" >Change Saved</button>
+      </form>
+
     </Box>
       ))
     }
